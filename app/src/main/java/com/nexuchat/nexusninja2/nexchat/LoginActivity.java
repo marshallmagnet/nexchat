@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,7 +21,8 @@ public class LoginActivity extends AppCompatActivity
 {
     private TextView txtSignUp;
     private EditText etMail, etPassword;
-    private Button btnLogin, btnFb, btnGoogle;
+    private Button btnLogin, btnFb;
+    private SignInButton btnGoogle;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthlistener;
 
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity
         txtSignUp = (TextView)findViewById(R.id.txtSignUp);
         btnLogin = (Button)findViewById(R.id.btnLogin);
         btnFb = (Button)findViewById(R.id.btnFb);
-        btnGoogle = (Button)findViewById(R.id.btnGoogle);
+        btnGoogle = (SignInButton) findViewById(R.id.btnGoogle);
 
         txtSignUp.setOnClickListener(onClick());
         btnLogin.setOnClickListener(onClick());

@@ -80,23 +80,23 @@
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintRight_toLeftOf="@+id/textView" />
 
-    <Button
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/btnGoogle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@android:color/transparent"
         android:text="GOOGLE"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/textView"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
