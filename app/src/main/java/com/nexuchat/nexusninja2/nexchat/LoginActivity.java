@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         };
-
+        //asdjasd
         etMail = (EditText)findViewById(R.id.etEmail);
         etPassword = (EditText)findViewById(R.id.etPassword);
         txtSignUp = (TextView)findViewById(R.id.txtSignUp);
