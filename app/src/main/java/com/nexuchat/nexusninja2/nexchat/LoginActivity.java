@@ -55,6 +55,24 @@ public class LoginActivity extends AppCompatActivity
         btnLogin.setOnClickListener(onClick());
         btnFb.setOnClickListener(onClick());
         btnGoogle.setOnClickListener(onClick());
+
+        mAuthlistener = new FirebaseAuth.AuthStateListener()
+        {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
+            {
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+                if (currentUser != null)
+                {
+                    GoHome();
+                }
+                else if (currentUser == null)
+                {
+
+                }
+            }
+        };
     }
 
     @Override

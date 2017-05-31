@@ -1,6 +1,7 @@
 package com.nexuchat.nexusninja2.nexchat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class SignUpActivity extends AppCompatActivity
 {
@@ -28,7 +32,9 @@ public class SignUpActivity extends AppCompatActivity
     private RadioGroup rbGroup;
     private RadioButton rbSelected;
     private FirebaseAuth mAuth;
+    private String photoUrl;
     private DatabaseReference databaseReference;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,6 +43,7 @@ public class SignUpActivity extends AppCompatActivity
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        //storageReference = FirebaseStorage.getInstance().getReference();
 
         txtLogin = (TextView)findViewById(R.id.txtLogin);
         etMail = (EditText)findViewById(R.id.etEmail);
@@ -62,20 +69,62 @@ public class SignUpActivity extends AppCompatActivity
                         }
                         else if (task.isSuccessful())
                         {
-                            StoreData(task.getResult().getUser(), etMail.getText().toString(), etPassword.getText().toString(), etFullName.getText().toString());
-                            mAuth.signOut();
+                            //UpdateProfile();
+                            StoreData(task.getResult().getUser(), etFullName.getText().toString());
+                            //mAuth.signOut();
+                            //GoLogin();
                         }
                     }
                 });
     }
 
-    private void StoreData(FirebaseUser mUser, String email, String password, String fullname)
+    private void UpdateProfile()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(etFullName.getText().toString())
+                .setPhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/android-ios-test.appspot.com/o/no_image.png?alt=media&token=1c4d55b0-452c-485b-acb0-221fffcf7cb7"))
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            mAuth.signOut();
+                            GoLogin();
+                        }
+                        else if(!task.isSuccessful())
+                        {
+                            Toaster("Error!");
+                        }
+                    }
+                });
+    }
+
+    private void StoreData(FirebaseUser mUser, String fullname)
     {
         rbGroup = (RadioGroup)findViewById(R.id.rgGender);
         rbSelected = (RadioButton)findViewById(rbGroup.getCheckedRadioButtonId());
-        String dbUserId = databaseReference.push().getKey();
-        User user = new User(email, password, fullname, rbSelected.getText().toString(), mUser.getUid());
-        databaseReference.child("users").child(dbUserId).setValue(user);
+        //String dbUserId = databaseReference.push().getKey();
+        //User user = new User(email, password, fullname, rbSelected.getText().toString(), mUser.getUid());
+
+        if (mUser.getPhotoUrl() == null)
+        {
+            photoUrl = "https://firebasestorage.googleapis.com/v0/b/android-ios-test.appspot.com/o/no_image.png?alt=media&token=1c4d55b0-452c-485b-acb0-221fffcf7cb7";
+        }
+        else if (mUser.getPhotoUrl() != null)
+        {
+            photoUrl = mUser.getPhotoUrl().toString();
+        }
+
+        User user = new User(mUser.getEmail(), fullname, photoUrl);
+        databaseReference.child("Users").child(mUser.getUid()).setValue(user);
+        UpdateProfile();
     }
 
     private  void GoLogin()

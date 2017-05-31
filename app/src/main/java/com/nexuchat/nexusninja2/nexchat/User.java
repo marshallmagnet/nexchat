@@ -1,12 +1,14 @@
 package com.nexuchat.nexusninja2.nexchat;
 
+import android.net.Uri;
+
 /**
  * Created by NexusNinja2 on 5/30/2017.
  */
 
 public class User
 {
-    private String mEmail, mPassword, mFullName, mGender, mUserID;
+    private String mEmail, mPassword, mFullName, mGender, mUserID, mPhotoUrl;
 
     public User()
     {
@@ -21,9 +23,23 @@ public class User
         this.mUserID = mUserID;
     }
 
+    public User(String mEmail, String mFullName, String mPhotoUrl) {
+        this.mEmail = mEmail;
+        this.mFullName = mFullName;
+        this.mPhotoUrl = mPhotoUrl;
+    }
+
     public String getmEmail() {
 
         return mEmail;
+    }
+
+    public String getmPhotoUrl() {
+        return mPhotoUrl;
+    }
+
+    public void setmPhotoUrl(String mPhotoUrl) {
+        this.mPhotoUrl = mPhotoUrl;
     }
 
     public void setmEmail(String mEmail) {
