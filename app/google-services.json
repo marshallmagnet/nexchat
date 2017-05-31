@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "834717052999",
+    "firebase_url": "https://android-ios-test.firebaseio.com",
+    "project_id": "android-ios-test",
+    "storage_bucket": "android-ios-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834717052999:android:0d586c1fff846803",
+        "android_client_info": {
+          "package_name": "com.nexuchat.nexusninja2.nexchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834717052999-8c677a0oul3qsdf47su9p4skdti15oju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nexuchat.nexusninja2.nexchat",
+            "certificate_hash": "1397a29b9ba0a835b0cce337f6d74c01db6ad078"
+          }
+        },
+        {
+          "client_id": "834717052999-1amu6t06oevi50t2v7sm725v347cf9pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTHQC1T6fMtESCbQoFNCq4wDXSMvm_hxM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834717052999-qvj99qr7r0h9pveo4vr9qjlf1ffhc1ig.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "JDK"
+              }
+            },
+            {
+              "client_id": "834717052999-1amu6t06oevi50t2v7sm725v347cf9pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
