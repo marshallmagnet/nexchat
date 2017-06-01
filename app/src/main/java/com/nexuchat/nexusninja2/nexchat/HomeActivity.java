@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity
 
                 if (currentUser != null)
                 {
-                    Toast.makeText(HomeActivity.this, "Successfully Logged In.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "Successfully Logged In.", Toast.LENGTH_SHORT).show();
                 }
                 else if (currentUser == null)
                 {
